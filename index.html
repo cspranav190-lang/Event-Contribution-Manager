@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Club Expense Tracker</h1>
+    <button id="themeToggle" class="btn btn-ghost">Toggle Theme</button>
+  </header>
+
+  <main class="container">
+    <section class="cards">
+      <div class="card"><span>Total Income</span><strong id="totalIncome">0.00</strong></div>
+      <div class="card"><span>Total Expenses</span><strong id="totalExpense">0.00</strong></div>
+      <div class="card"><span>Running Balance</span><strong id="balance">0.00</strong></div>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Add Transaction</h2>
+        <form id="txForm">
+          <label>Type
+            <select id="txType">
+              <option value="income">Income (fee / sponsorship / donation)</option>
+              <option value="expense">Expense</option>
+            </select>
+          </label>
+          <label>Event
+            <select id="txEvent" required></select>
+          </label>
+          <label>Description
+            <input id="txDesc" type="text" placeholder="e.g. Venue booking" required>
+          </label>
+          <label>Amount
+            <input id="txAmount" type="number" min="0.01" step="0.01" required>
+          </label>
+          <label>Category
+            <select id="txCategory">
+              <option>Fees</option>
+              <option>Sponsorship</option>
+              <option>Donation</option>
+              <option>Venue</option>
+              <option>Food</option>
+              <option>Printing</option>
+              <option>Travel</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Paid by / Received from
+            <input id="txPerson" type="text" placeholder="Name (optional)">
+          </label>
+          <label>Date
+            <input id="txDate" type="date" required>
+          </label>
+          <button type="submit" class="btn">Add Transaction</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Create Event / Budget</h2>
+        <form id="eventForm">
+          <label>Event name
+            <input id="eventName" type="text" placeholder="e.g. Annual Fest 2026" required>
+          </label>
+          <label>Budget
+            <input id="eventBudget" type="number" min="0" step="0.01" required>
+          </label>
+          <button type="submit" class="btn">Save Event</button>
+        </form>
+
+        <h2 class="mt">Budget vs. Actual</h2>
+        <div id="budgetList"></div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <div class="row-between">
+        <h2>Transactions</h2>
+        <select id="filterEvent" class="filter"></select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Event</th><th>Description</th>
+              <th>Category</th><th>Person</th><th class="right">Amount</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="txBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Expenses by Category</h2>
+      <div id="categoryChart"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
